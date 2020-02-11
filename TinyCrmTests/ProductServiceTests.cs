@@ -24,16 +24,14 @@ namespace TinyCrmTests
             var options = new CreateProductOptions()
             {
                  Id = "123",
-                 Description = "help",
                  Name = "Mac",
+                 Category = TinyCrm.Core.Model.ProductCategory.Computers,
                  Price = 1000
             };
             
             var product = productService.CreateProduct(options);
 
             Assert.NotNull(product);
-            Assert.Equal(options.Name, product.Name);
-            Assert.Equal(options.Price, product.Price);
         }
     }
 }
