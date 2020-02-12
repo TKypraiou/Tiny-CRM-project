@@ -23,9 +23,9 @@ namespace TinyCrmTests
 
             var optionsCreate = new CreateCustomerOptions()
             {
-                Email = "dd@codehub.com",
-                FirstName = "Dimitris",
-                VatNumber = 1234567889
+                Email = "tk@codehub.com",
+                FirstName = "dora",
+                VatNumber = 0987654321
             };
 
             var customer = customerService.Create(optionsCreate);
@@ -44,7 +44,7 @@ namespace TinyCrmTests
             Assert.Equal(optionsSearch.Email, customer.Email);
             Assert.Equal(optionsSearch.VatNumber, customer.VatNumber);
             Assert.Equal(optionsSearch.FirstName, customer.FirstName);
-
+            Assert.NotEqual(0, customer.Id);
 
         }
 
@@ -53,6 +53,7 @@ namespace TinyCrmTests
         {
             ICustomerService customerService =
                 new CustomerService(context_);
+
             var options = new CreateCustomerOptions()
             {
                 Email = "dd@codehub.com",

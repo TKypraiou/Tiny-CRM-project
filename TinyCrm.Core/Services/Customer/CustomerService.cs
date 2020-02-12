@@ -83,23 +83,16 @@ namespace TinyCrm.Core.Services
 
             var customer = new Customer();
 
-            var vat = customer.VatNumber.ToString();
-
-            if (vat.Length == 9)
+            if (!options.Email.Contains("@"))
             {
-                customer.VatNumber = options.VatNumber;
+                return null;
             }
-            else return null;
-
-            if (customer.Email.Contains("@"))
-            {
-                customer.Email = options.Email;
-            }
-            else return null;
 
             customer.FirstName = options.FirstName;
             customer.LastName = options.LastName;
+            customer.VatNumber = options.VatNumber;
             customer.Phone = options.Phone;
+            customer.Email = options.Email;
             customer.Age = options.Age;
 
             context.Set<Customer>().Add(customer);

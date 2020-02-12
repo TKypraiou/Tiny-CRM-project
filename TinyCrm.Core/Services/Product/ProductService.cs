@@ -32,6 +32,7 @@ namespace TinyCrm.Core.Services.Product1
                 query = query.Where(
                     p => p.Id == options.Id);
             }
+            Guid obj = Guid.NewGuid();
 
             if (options.Name != null)
             {
@@ -63,32 +64,27 @@ namespace TinyCrm.Core.Services.Product1
                 return null;
             }
 
-            if (string.IsNullOrWhiteSpace(options.Id)
-                || string.IsNullOrWhiteSpace(options.Name)
+            if (string.IsNullOrWhiteSpace(options.Name)
                 || options.Price <= 0)
             {
                 return null;
             }
 
             var product = new Product();
+            product.Name = options.Name;
 
-            if (product != null)
+            if (!string.IsNullOrEmpty(options.Description))
             {
-                return null;
+                product.Description = options.Description;
             }
-
-            if (options.Name != null
-                || string.IsNullOrWhiteSpace(options.Name))
-            {
-                product.Name = options.Name;
-            }
+            else return null;
 
             if (options.Price > 0)
             {
                 product.Price = options.Price;
             }
 
-            if (options.Category == 0)
+            if (options.Category != 0)
             {
                 product.Category = options.Category;
             }
